@@ -1,7 +1,5 @@
-
-
 // Insertion des produits dans le DOM // 
-function display (res){
+function displayArticles(res){
     console.log("Je passe dans display");
     let divDisplay = document.getElementById("items");
     for (let i = 0; i < res.length; i++){
@@ -24,7 +22,7 @@ function getArticles() {
         .then(data => { 
             console.log("Je suis passé par là");
             console.log(data);
-            display(data);
+            displayArticles(data);
         })
     
         .catch(function (err) {
