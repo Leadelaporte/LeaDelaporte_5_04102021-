@@ -1,9 +1,7 @@
 // Insertion des produits dans le DOM // 
 function displayArticles(res){
-    console.log("Je passe dans display");
     let divDisplay = document.getElementById("items");
     for (let i = 0; i < res.length; i++){
-        console.log("Je passe dans la boucle");
         divDisplay.innerHTML += `
         <a href="./product.html?id=${res[i]._id}">
             <article>
@@ -20,7 +18,6 @@ function getArticles() {
     fetch("http://localhost:3000/api/products")
         .then(response => response.json())
         .then(data => { 
-            console.log("Je suis passé par là");
             console.log(data);
             displayArticles(data);
         })
