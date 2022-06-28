@@ -26,9 +26,7 @@ function displayArticles(cart){
                 let product = apiData.find(function (d) {
                     return d._id === cartData[i].id;
                 });
-                console.log(apiData, cartData);
-                console.log("Product : ");
-                console.log(product);
+                console.log(cartData);
                 divDisplay.innerHTML += `
                 <article class="cart__item" data-id="${product._id}">
                     <div class="cart__item__img">
@@ -37,7 +35,7 @@ function displayArticles(cart){
                     <div class="cart__item__content">
                         <div class="cart__item__content__titlePrice">
                         <h2>${product.name}</h2>
-                        <p>${product.price}</p>
+                        <p>${cartData[i].color} - ${product.price}</p>
                         </div>
                         <div class="cart__item__content__settings">
                         <div class="cart__item__content__settings__quantity">
@@ -75,8 +73,7 @@ function displayArticles(cart){
             for(let i = 0;i<inputs.length;i++) {
                 inputs[i].addEventListener('change', () => {
                     console.log("Changemnt de la quantité de " + i + " : " + inputs[i].value);
-                    //let cart = getCart();
-                    cart[i].quantity = inputs[i].value;
+                    cart[i].quantity = parseInt(inputs[i].value);
                     localStorage.setItem('panier', JSON.stringify(cart));
                     calculTotalPanier();
                 });
@@ -105,7 +102,9 @@ function calculTotalPanier() {
                 });
 
                 totalQuantite = totalQuantite + cart[i].quantity;
+                console.log(cart[i].quantity)
                 prixTotal = prixTotal + product.price * cart[i].quantity;
+
             }
 
             let quantiteTotal = document.getElementById("totalQuantity");
@@ -116,23 +115,6 @@ function calculTotalPanier() {
             console.log(prixTotal)
         });
 }
-
-
-// Récupération des articles dans l'API //
-
-/*function getArticles() {
-    fetch(`http://localhost:3000/api/products/`)
-        .then(response => response.json())
-        .then(data => { 
-            console.log(data)
-            //displayArticles(data);
-        })
-    
-        .catch(function (err) {
-            console.log(err);
-        }) 
-}*/
-
 
 // ---------------------------------------- Formulaire ---------------------------------------- // 
 
@@ -296,9 +278,6 @@ const contact = {
 }
 );
 
-
-
-//getArticles();
 let cart = getCart();
 console.log("Panier : ");
 console.log(cart);

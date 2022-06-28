@@ -5,7 +5,7 @@ function displayArticles(res){
         divDisplay.innerHTML += `
         <a href="./product.html?id=${res[i]._id}">
             <article>
-                <img src="${res[i].imageUrl}" alt="Lorem ipsum dolor sit amet, Kanap name1">
+                <img src="${res[i].imageUrl}" alt="${res[i].altTxt}">
                 <h3 class="productName">${res[i].name}</h3>
                 <p class="productDescription">${res[i].description} </p>
             </article>
